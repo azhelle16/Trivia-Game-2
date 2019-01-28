@@ -1,0 +1,190 @@
+/* GENERAL */
+
+body {
+	background-image: url("../images/main.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	font-family: 'Georgia', Times, Times New Roman, serif;
+	text-align: center;
+	margin: 0;
+}
+
+/* HEADER */
+
+header {
+	background-image: linear-gradient(to bottom right, #3B5323,#BCED91, #fff);
+	border-bottom: 8px solid #000;
+	height: 100px;
+	margin; 0;
+}
+
+header img:first-child {
+	margin-top: 10px;
+	margin-left: 100px;
+}
+
+header button {
+	float: right;
+	margin-top: 10px;
+	margin-right: 10px; 
+	cursor: pointer;
+	height: 80px;
+	width: 80px;
+	border: 0px solid red;
+}
+
+/* MAIN CONTAINER */
+
+#mainContainer {
+	min-height: 560px;
+	border: 1px #dddddd solid;
+	width: 900px;
+	background-color: #ffffff;
+	overflow: auto;
+	position: relative;
+	margin: 20px 20px;
+	/*max-height: 560px;*/
+	padding: 20px;
+	line-height: 15px;
+	background-image: url("../images/vintage-concrete.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#timerContainer {
+	min-height: 0px;
+	border: 1px #dddddd solid;
+	width: 450px;
+	background-color: #ffffff;
+	overflow: auto;
+	position: relative;
+	margin: 30px 20px;
+	border-radius: 5px;
+}
+
+#leftContainer button:first-child {
+	margin-top: 30px;
+	margin-bottom: -50px;
+}
+
+#leftContainer button:last-child {
+	margin-top: 0px;
+}
+
+.startButton, .resetButton {
+	width: 250px;
+    height: 80px;
+}
+
+#doneButton button {
+	width: 150px;
+    height: 60px;
+}
+
+.startButton, .resetButton, #doneButton button{
+    padding: 5px 10px;
+    display: inline-block;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #ffffff;
+    background-color: #4B0082;
+    font-size: 20px;
+    font-family: 'Georgia', Times, Times New Roman, serif;
+    cursor: pointer;
+}
+
+.startButton[disabled], .resetButton[disabled] {
+	opacity: 0.5;
+}
+
+.fleft {
+	float: left;
+}
+
+.fright {
+	float: right;
+}
+
+.dispHide {
+	display: none;
+}
+
+#mainContainer div {
+	padding-bottom: 15px;
+}
+
+#mainContainer p {
+	color: 	#8A2BE2;
+	font-style: italic;
+	font-weight: bold;
+}
+
+#quizResult {
+	padding: 20px;
+	font-size: 80px;
+	background-color: black;
+	color: white;
+}
+
+table {
+	width: 95%;
+	text-align: center;
+	margin: 40px 20px;
+	border-collapse: collapse;
+ 	table-layout: fixed;
+}
+
+td {
+	padding: 10px 0;
+	font-size: 30px;
+	border: 3px solid black;
+}
+
+th {
+	padding: 10px 0;
+	border: 3px solid black;
+	background: #00c5ff;
+	color: white;
+}
+
+table th:last-child {
+	border-top: 0;
+	border-bottom: 0;
+	border-right: 0;
+	width: 40%;
+	background: none;
+}
+
+p {
+	font-size: 40px;
+	line-height: 50px;
+}
+
+input span {
+	font-size: 20px;
+}
+
+/* FOOTER */
+
+footer {
+	border-top: 8px solid #000;
+	background-image: linear-gradient(to bottom right, #3B5323,#BCED91, #fff);
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	text-align: center;
+	padding: 20px;
+}
+
+/* DIALOG */
+
+.modal-header {
+	background-color: #4B0082;
+	color: white;
+}
+
+.modal-title {
+	text-align: center;
+	width: 100%;
+}
