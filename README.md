@@ -2,7 +2,7 @@ The objective of the game is to answer all questions in a given time
 
 By clicking the start button, the player is given 10 seconds to answer each question.
 
-You can click the done button when you're ready to submit your answers within 10 seconds
+The answers will be shown when the time is up or if you've selected an answer
 
 Credits:
 
