@@ -38,33 +38,15 @@ $(document).ready(function() {
  	$(".resetButton").css("opacity","0")
  	
  	$(".startButton").on("click", function() {
- 		$("#mainContainer").removeClass("dispHide")//
+ 		$("#mainContainer").removeClass("dispHide")
  		$("#questionnaire").load("./assets/html/movie.html", function() {
- 			$("#doneButton, #q1").removeClass("dispHide")
+ 			initButtons()
+ 			//$("#doneButton, #q1").removeClass("dispHide")
+ 			$("#q1").removeClass("dispHide")
 			$(".startButton").css("opacity","0")
 			rt = setInterval(runTimer,1000)
  		})
  		
- 	})
-
- 	$("#doneButton").on("click", function() {
- 		if (qNum == 10) {
- 			$("#correctAudio").trigger("play");
- 			//$("#tUp img").attr("src","./assets/images/results.png");
- 			clearInterval(rt)
- 			checkAnswers()
- 			showResults();
- 		} else {
-	 		clearInterval(rt)
-	 		checkAnswers()
-	 		secs = "10"
-	 		var num = qNum;
-			qNum += 1
-			$("#q"+num).addClass("dispHide")
-			$("#q"+qNum).removeClass("dispHide")
-			runTimer();
-			rt = setInterval(runTimer,1000)
-		  }
  	})
 
  	$(".resetButton").on("click", function() {
@@ -78,16 +60,18 @@ $(document).ready(function() {
 		im.attr("src","./assets/images/0.png")
 		im.attr("height","200")
 		$("#countdown").append(im)
- 		$("#mainContainer").addClass("dispHide")
  		$("#questionnaire").removeClass("dispHide")
- 		$("#doneButton").addClass("dispHide")
 		$(".resetButton").css("opacity","0")
 		$("#quizResult").addClass("dispHide")
-		$(".startButton").css("opacity","1")
 		qNum = 1
 		cor = 0
 		incor = 0
 		noans = 0
+		$("#mainContainer").removeClass("dispHide")
+ 		$("#questionnaire").load("./assets/html/movie.html", function() {
+ 			$("#q1").removeClass("dispHide")
+			rt = setInterval(runTimer,1000)
+ 		})
  	});
 
 })
@@ -132,68 +116,13 @@ function runTimer() {
 
 	if (s < 0) {
 		$("#wrongAudio").trigger("play");
-		if (qNum == 10) {			
-			clearInterval(rt)
-			checkAnswers()
-			showResults();
-		} else {
-			clearInterval(rt)
-			checkAnswers()
-			secs = "10"
-			setTimeout(function() {
-				var num = qNum;
-				qNum += 1
-				rt = setInterval(function() {
-					$("#q"+num).addClass("dispHide")
-					runTimer();
-					$("#q"+qNum).removeClass("dispHide")
-				}, 1000)
-			},500)
-		  }
+		showCorWrongAnswers("")
 	} else {
 		 if (s < 5){
 		 	$("#timerAudio").trigger("play");
 	  	 }
 		 secs = ""+s 
 	  }
-
-}
-
-/*
- #######################################################################
- #
- #  FUNCTION NAME : checkAnswers
- #  AUTHOR        : Maricel Louise Sumulong
- #  DATE          : January 24, 2019 PST 
- #  MODIFIED BY   : Maricel Louise Sumulong
- #  REVISION DATE : January 26, 2019 PST
- #  REVISION #    : 1
- #  DESCRIPTION   : checks the answer selected
- #  PARAMETERS    : none
- #
- #######################################################################
-*/
-
-function checkAnswers() {
-
-	var noc = 0 //no check counter
-	$("input[name='rb"+qNum+"']").each(function() {
-		
-		if ($(this).is(":checked")) {
-			console.log("ANSWER: "+$(this).val())
-			if (answers.movie.includes($(this).val())) {
-				cor += 1
-			} else {
-				incor += 1
-			  }
-		} else {
-			noc += 1
-		  }
-		 
-	})
-
-	if (noc == 4)
-		noans += 1
 
 }
 
@@ -221,5 +150,92 @@ function showResults() {
 	$("#noa").text(noans)
 	$(".resetButton").css("opacity","1")
 	$(".startButton").css("opacity","0")
+
+}
+
+/*
+ #######################################################################
+ #
+ #  FUNCTION NAME : initButtons
+ #  AUTHOR        : Maricel Louise Sumulong
+ #  DATE          : January 31, 2019 PST 
+ #  MODIFIED BY   : Maricel Louise Sumulong
+ #  REVISION DATE : February 02, 2019 PST
+ #  REVISION #    : 1
+ #  DESCRIPTION   : initializes how the radiobuttons works upon clicking
+ #  PARAMETERS    : none
+ #
+ #######################################################################
+*/
+
+function initButtons() {
+
+	$(".cbut").on("click",function() {
+		showCorWrongAnswers($(this).val())
+	})
+
+}
+
+/*
+ #######################################################################
+ #
+ #  FUNCTION NAME : showCorWrongAnswers
+ #  AUTHOR        : Maricel Louise Sumulong
+ #  DATE          : February 02, 2019 PST
+ #  MODIFIED BY   : Maricel Louise Sumulong
+ #  REVISION DATE : 
+ #  REVISION #    : 
+ #  DESCRIPTION   : shows the answers and let user know whether its wrong or right
+ #  PARAMETERS    : movie name
+ #
+ #######################################################################
+*/
+
+function showCorWrongAnswers(mov) {
+
+	$("#q"+qNum).addClass("dispHide")
+	var im = $("<img>")
+	im.attr("src","./assets/images/a"+qNum+".jpg")
+	im.attr("class","thisImg")
+	var toShow
+	var div = $("<div>")
+	div.append(im)
+	if (mov != "") {
+		if (answers.movie.includes(mov)) { //CORRECT ANSWER
+			$("#correctAudio").trigger("play");
+			toShow = "clogo"
+			cor += 1
+		} else { //WRONG ANSWER
+			$("#wrongAudio").trigger("play");
+			toShow = "wlogo"
+			$("#ansSpan").text(answers.movie[qNum-1])
+			incor += 1
+		  }
+	} else {
+		toShow = "wlogo"
+		$("#ansSpan").text(answers.movie[qNum-1])
+		noans += 1
+	  }
+	$("#"+toShow).removeClass("dispHide")
+	$("#answers").append(div)
+	clearInterval(rt)
+	secs = "10";
+	setTimeout(function() {
+		qNum += 1
+		if (qNum > 10) {
+			clearInterval(rt)
+			showResults();
+		} else {
+			rt = setInterval(function() {
+				div.remove();
+				$("#"+toShow).addClass("dispHide")
+				runTimer();
+			}, 1000)
+			setTimeout(function() {
+				$("#q"+qNum).removeClass("dispHide")
+			},1000)
+		  }
+		
+	},1000)
 
 }

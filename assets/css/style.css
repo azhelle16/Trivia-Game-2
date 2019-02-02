@@ -71,17 +71,7 @@ header button {
 	margin-top: 0px;
 }
 
-.startButton, .resetButton {
-	width: 250px;
-    height: 80px;
-}
-
-#doneButton button {
-	width: 150px;
-    height: 60px;
-}
-
-.startButton, .resetButton, #doneButton button{
+.startButton, .resetButton{
     padding: 5px 10px;
     display: inline-block;
     border: 2px solid #ccc;
@@ -92,6 +82,8 @@ header button {
     font-size: 20px;
     font-family: 'Georgia', Times, Times New Roman, serif;
     cursor: pointer;
+    width: 250px;
+    height: 80px;
 }
 
 .startButton[disabled], .resetButton[disabled] {
@@ -127,33 +119,9 @@ header button {
 	color: white;
 }
 
-table {
-	width: 95%;
-	text-align: center;
-	margin: 40px 20px;
-	border-collapse: collapse;
- 	table-layout: fixed;
-}
-
-td {
-	padding: 10px 0;
-	font-size: 30px;
-	border: 3px solid black;
-}
-
-th {
-	padding: 10px 0;
-	border: 3px solid black;
-	background: #00c5ff;
-	color: white;
-}
-
-table th:last-child {
-	border-top: 0;
-	border-bottom: 0;
-	border-right: 0;
-	width: 40%;
-	background: none;
+.thisImg {
+	height: 300px;
+	width: 500px;
 }
 
 p {

@@ -35,9 +35,6 @@
 	<div id="mainContainer" class="dispHide fright">
 		<div id="questionnaire">
 		</div>
-		<div id="doneButton" class="dispHide">
-			<button style="background: url('./assets/images/next.png') no-repeat; background-size: 150px 60px"></button>
-		</div>
 		<div id="quizResult" class="dispHide">
 			<div id="tUp">
 				<img src="./assets/images/results.png" height="200px">
@@ -66,17 +63,12 @@
   			<div class="modal-content">
    		  		<div class="modal-header">
         			<h5 class="modal-title">HOW TO PLAY</h5>
-        			<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
-         				<!-- <span aria-hidden="true">&times;</span> -->
-        			<!-- </button> -->
       			</div>
      			<div class="modal-body">
      		   		<p>Answer the questions within the given number of time.</p>
      		   		<p>Click "START" to start the game.</p>
       			</div>
       			<div class="modal-footer">
-        			<!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-        			<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
         			<button type="button" class="btn btn-primary" data-dismiss="modal">Got It!</button>
       			</div>
     		</div>
@@ -84,7 +76,7 @@
 	</div>
 	<!-- for sounds -->
 	<audio id="correctAudio">
-		<source src="./assets/sounds/correct.mp3" type="audio/mpeg">
+		<source src="./assets/sounds/correct-answer.mp3" type="audio/mpeg">
 	</audio>		
 	<audio id="wrongAudio">
 		<source src="./assets/sounds/wrong-answer.wav" type="audio/wav">
